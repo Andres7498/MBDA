@@ -1,0 +1,17 @@
+El número de clientes en cada una de las ciudades:
+SELECT City AS Ciudad,COUNT(Customer.CustomerID) AS 'NumeroDeClientes'
+FROM Customer JOIN CustomerAddress ON (Customer.CustomerID=CustomerAddress.CustomerID)
+JOIN Address ON (CustomerAddress.AddressID=Address.AddressID)
+GROUP BY Customer.CustomerID
+ORDER BY NumeroDeClientes ASC
+
+Los clientes con más de dos direcciones registradas:
+SELECT CONCAT(FirstName,' ',LastName) AS 'Cliente'
+FROM Customer JOIN CustomerAddress ON (Customer.CustomerID=CustomerAddress.CustomerID)
+GROUP BY (CustomerAddress.CustomerID) HAVING COUNT(CustomerAddress.CustomerID)>=2
+
+Los clientes ubicados en más de una ciudad:
+SELECT * FROM (SELECT Customer.CustomerID AS Id , CONCAT(FirstName,' ',LastName) AS Clientes
+FROM Customer JOIN CustomerAddress ON (Customer.CustomerID=CustomerAddress.CustomerID)
+GROUP BY (CustomerAddress.CustomerID) HAVING COUNT(CustomerAddress.CustomerID)>=2) AS A
+JOIN CustomerAddress ON (A.Id=CustomerAddress.CustomerID
