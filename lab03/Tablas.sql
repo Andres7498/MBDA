@@ -202,3 +202,14 @@ ALTER TABLE Evaluacion ADD CONSTRAINT UK_Evaluacion UNIQUE (comentarios);
 /*FORANEAS*/
 ALTER TABLE Contacto ADD CONSTRAINT FK_Contacto_Partticipante FOREIGN KEY (tidC,nidC) REFERENCES Participante(tid,nid);
 ALTER TABLE Contacto ADD CONSTRAINT FK_Contacto_Atleta FOREIGN KEY (tidA,nidA) REFERENCES Atleta(tid,nid);
+ALTER TABLE Atleta ADD CONSTRAINT FK_Atleta_Participante FOREIGN KEY (tid,nid) REFERENCES Participante(tid,nid);
+ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Entrenador FOREIGN KEY (tidE,nidE) REFERENCES Entrenador(tid,nid);
+ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Atleta FOREIGN KEY (tidA,nidA) REFERENCES Atleta(tid,nid);
+ALTER TABLE Entrenador ADD CONSTRAINT FK_Entrenador_Participante FOREIGN KEY (tid,nid) REFERENCES Participante(tid,nid);
+ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion1 FOREIGN KEY (numero1) REFERENCES Evaluacion(numero);
+ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion2 FOREIGN KEY (numero2) REFERENCES Evaluacion(numero);
+ALTER TABLE Sesion ADD CONSTRAINT FK_Sesion_Atleta FOREIGN KEY (tid,nid) REFERENCES Atleta(tid,nid);
+ALTER TABLE Libre ADD CONSTRAINT FK_Libre_Atleta FOREIGN KEY (tid,nid) REFERENCES Atleta(tid,nid);
+ALTER TABLE Planeada ADD CONSTRAINT FK_Planeada_Sesion FOREIGN KEY (idS) REFERENCES Sesion(idS);
+ALTER TABLE Registro ADD CONSTRAINT FK_Registro_Actividad FOREIGN KEY (numero) REFERENCES Actividad(numero);
+ALTER TABLE Evaluacion ADD CONSTRAINT FK_Eva_act FOREIGN KEY (numero) REFERENCES Actividad(numero);
