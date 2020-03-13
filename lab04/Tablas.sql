@@ -226,27 +226,6 @@ ALTER TABLE Atleta ADD CONSTRAINT FK_Atleta_Participante FOREIGN KEY (tid,nid) R
 ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Entrenador FOREIGN KEY (tidEntrenador,nidEntrenador) REFERENCES Entrenador(tid,nid);
 ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
 ALTER TABLE Entrenador ADD CONSTRAINT FK_Entrenador_Participante FOREIGN KEY (tid,nid) REFERENCES Participante(tid,nid);
-<<<<<<< HEAD
-ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion1 FOREIGN KEY (numero1) REFERENCES Evaluacion(numero);
-ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion2 FOREIGN KEY (numero2) REFERENCES Evaluacion(numero);
-ALTER TABLE Sesion ADD CONSTRAINT FK_Sesion_Atleta FOREIGN KEY (tid,nid) REFERENCES Atleta(tid,nid);
-ALTER TABLE Libre ADD CONSTRAINT FK_Libre_Atleta FOREIGN KEY (tid,nid) REFERENCES Atleta(tid,nid);
-ALTER TABLE Planeada ADD CONSTRAINT FK_Planeada_Sesion FOREIGN KEY (idS) REFERENCES Sesion(idS);
-ALTER TABLE Registro ADD CONSTRAINT FK_Registro_Actividad FOREIGN KEY (numero) REFERENCES Actividad(numero);
-ALTER TABLE Evaluacion ADD CONSTRAINT FK_Eva_act FOREIGN KEY (numero) REFERENCES Actividad(numero);
-
-/*POBLAR NO OK2*/
-
-/*CONSULTAS*/
-
-SELECT numero FROM Evaluacion JOIN Entrenador ON (Evaluacion.tid=Entrenador.tid AND Evaluacion.nid=Entrenador.nid)
-WHERE puntaje=1 GROUP BY Entrenador.nid;
-
-SELECT Actividad.numero, fecha, hora, sensor, valor FROM Actividad JOIN Registro ON (Actividad.numero=Registro.numero);
-
-
-
-=======
 ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion1 FOREIGN KEY (evaluacion1) REFERENCES Evaluacion(numero);
 ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion2 FOREIGN KEY (evaluacion2) REFERENCES Evaluacion(numero);
 ALTER TABLE Sesion ADD CONSTRAINT FK_Sesion_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
@@ -372,4 +351,3 @@ insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('56
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('563', '130947901712448', '563@escuelaing.edu.co', 'France', '2018-11-30', '2019-12-30');
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('593', '524170161785828', '593@escuelaing.edu.co', 'Sweden', '2017-05-10', '2020-02-10');
 */
->>>>>>> aed7271e48507875dfa78b45ad0d351363d2fe28
