@@ -213,3 +213,15 @@ ALTER TABLE Libre ADD CONSTRAINT FK_Libre_Atleta FOREIGN KEY (tid,nid) REFERENCE
 ALTER TABLE Planeada ADD CONSTRAINT FK_Planeada_Sesion FOREIGN KEY (idS) REFERENCES Sesion(idS);
 ALTER TABLE Registro ADD CONSTRAINT FK_Registro_Actividad FOREIGN KEY (numero) REFERENCES Actividad(numero);
 ALTER TABLE Evaluacion ADD CONSTRAINT FK_Eva_act FOREIGN KEY (numero) REFERENCES Actividad(numero);
+
+/*POBLAR NO OK2*/
+
+/*CONSULTAS*/
+
+SELECT numero FROM Evaluacion JOIN Entrenador ON (Evaluacion.tid=Entrenador.tid AND Evaluacion.nid=Entrenador.nid)
+WHERE puntaje=1 GROUP BY Entrenador.nid;
+
+SELECT Actividad.numero, fecha, hora, sensor, valor FROM Actividad JOIN Registro ON (Actividad.numero=Registro.numero);
+
+
+
