@@ -141,32 +141,43 @@ INSERT INTO Planeada VALUES (4,2414);
 INSERT INTO Planeada VALUES (5,1765);
 INSERT INTO Planeada VALUES (6,7893);
 
-INSERT INTO Actividad VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,2,80.5,'4fds.4dfsa');
-INSERT INTO Actividad VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,3,82.1,'asd4.4dfsa');
-INSERT INTO Actividad VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),900,4,86.3,'ewq3.4dfsa');
-INSERT INTO Actividad VALUES (4,TO_DATE('2020/03/3','yyyy/mm/dd'),1400,2,90.5,'2sad.4dfsa');
-INSERT INTO Actividad VALUES (5,TO_DATE('2020/03/2','yyyy/mm/dd'),2130,3,91.3,'3sas.4dfsa');
-INSERT INTO Actividad VALUES (6,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5,'f6ew.4dfsa');
+INSERT INTO Actividad VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,2,80.5);
+INSERT INTO Actividad VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,3,82.1);
+INSERT INTO Actividad VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),900,4,86.3);
+INSERT INTO Actividad VALUES (4,TO_DATE('2020/03/3','yyyy/mm/dd'),1400,2,90.5);
+INSERT INTO Actividad VALUES (5,TO_DATE('2020/03/2','yyyy/mm/dd'),2130,3,91.3);
+INSERT INTO Actividad VALUES (6,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5);
 
-INSERT INTO Registro VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,'C',15);
-INSERT INTO Registro VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,'V',45);
-INSERT INTO Registro VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),900,'P',48);
+INSERT INTO Registro VALUES (1,4,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,'C',15);
+INSERT INTO Registro VALUES (2,5,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,'V',45);
+INSERT INTO Registro VALUES (3,6,TO_DATE('2020/03/4','yyyy/mm/dd'),900,'P',48);
 
-INSERT INTO Evaluacion VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),2,'Debe practicar más','Zonas: 1 Calentamiento: 3 Cadencia: 2','002','0002');
-INSERT INTO Evaluacion VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),3,'Buen gancho','Zonas: 1 Calentamiento: 2 Cadencia: 3','005','0005');
-INSERT INTO Evaluacion VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),5,'Tiene aptitudes para esta disciplina','Zonas: 6 Calentamiento: 5 Cadencia: 4','003','0003');
+INSERT INTO Evaluacion VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),2,'Debe practicar más','Zonas: 1 Calentamiento: 3 Cadencia: 2',1,'002','0002');
+INSERT INTO Evaluacion VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),3,'Buen gancho','Zonas: 1 Calentamiento: 2 Cadencia: 3',2,'005','0005');
+INSERT INTO Evaluacion VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),5,'Tiene aptitudes para esta disciplina','Zonas: 6 Calentamiento: 5 Cadencia: 4',3,'003','0003');
 
 INSERT INTO SimilarA VALUES(1,2,58);
 INSERT INTO SimilarA VALUES(3,4,97);
 INSERT INTO SimilarA VALUES(1,5,20);
 
-/*POBLAR NO OK*/
+INSERT INTO Fotos VALUES(1,'4fers.sda2');
+INSERT INTO Fotos VALUES(2,'5dsa.weq');
+INSERT INTO Fotos VALUES(1,'3g4ikd.sad');
+
+/*POBLAR NO OK 1*/
 
 INSERT INTO Evaluacion VALUES (4,'2020/02/17',86,'Debe practicar más','Dediquese a otra cosa','002','0002'); /*Se ingreso un varchar en lugar de un tipo DATE*/
 INSERT INTO Entrenador VALUES ('006','0006','Porvenir',45648);/*Demasiados valores*/
+INSERT INTO Participante VALUES (NULL,NULL,'federico@gmail.com','Colombia',TO_DATE('2016/06/29','yyyy/mm/dd'),NULL); /*tid y nid no puedes ser nulos*/
+INSERT INTO Atleta VALUES ('0025','0005','+','AB'); /*El valor del tid es mas grande de lo permitido*/
+INSERT INTO Planeada VALUES ('ca21',0005); /*El número de la sesion planeada no es del tipo requerido, ingresa char necesita int*/
+
+/*POBLAR NO OK 2*/
 INSERT INTO Participante VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*el id de anderson es el mismo de valentina*/
 INSERT INTO SimilarA VALUES(1,7,20);/*El id ingresado no se encuentra*/
 INSERT INTO Actividad VALUES (7,TO_DATE('2020/02/1','yyyy/mm/dd'),1100,4,74.5,'f6ew4dfsa');/*El codigo de la foto no cumple con el tipo requerido*/
+INSERT INTO Atleta VALUES ('102','2137321','+','x'); /*El tipo de sangre no es valido*/
+INSERT INTO SimilarA VALUES(1,3,120);/*El porcentaje es mayor a 100*/
 
 /*DESPOBLAR*/
 
@@ -185,17 +196,27 @@ DELETE FROM Evaluacion;
 DELETE FROM Fotos;
 
 /*CHECKS*/
+ALTER TABLE Atleta ADD CONSTRAINT CK_tSangre CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB');
+ALTER TABLE Actividad ADD CONSTRAINT CK_tiempoTotal CHECK(tiempoTotal>0 AND tiempoTotal<1441);
+ALTER TABLE Actividad ADD CONSTRAINT CK_horaInicio CHECK(horaInicio>0 AND horaInicio<2401);
+ALTER TABLE Registro ADD CONSTRAINT CK_hora CHECK(hora>0 AND hora<2401);
+ALTER TABLE SimilarA ADD CONSTRAINT CK_porcentaje CHECK(porcentaje>0 AND porcentaje<101);
+ALTER TABLE Evaluacion ADD CONSTRAINT CK_puntaje CHECK(puntaje>=0 AND puntaje<6);
+ALTER TABLE Evaluacion ADD CONSTRAINT CK_recomendaciones CHECK(recomendaciones LIKE 'Zonas: % Calentamiento: % Cadencia: %');
+ALTER TABLE Atleta ADD CONSTRAINT CK_rh CHECK(rh='+' OR rh='-');
+ALTER TABLE Registro ADD CONSTRAINT CK_sensor CHECK(sensor='V' OR sensor='P' OR sensor='C');
+ALTER TABLE Fotos ADD CONSTRAINT CK_foto CHECK(foto LIKE '%.%');
 
-ALTER TABLE Atleta MODIFY (tSangre CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB'));
-ALTER TABLE Actividad MODIFY (tiempoTotal CHECK(tiempoTotal>0 AND tiempoTotal<1441));
-ALTER TABLE Actividad MODIFY (horaInicio CHECK(horaInicio>0 AND horaInicio<2401));
-ALTER TABLE Registro MODIFY (hora CHECK(hora>0 AND hora<2401));
-ALTER TABLE SimilarA MODIFY (porcentaje CHECK(porcentaje>0 AND porcentaje<101));
-ALTER TABLE Evaluacion MODIFY (puntaje CHECK(puntaje>=0 AND puntaje<6));
-ALTER TABLE Evaluacion MODIFY (recomendaciones CHECK(recomendaciones LIKE 'Zonas: % Calentamiento: % Cadencia: %'));
-ALTER TABLE Atleta MODIFY (rh CHECK(rh='+' OR rh='-'));
-ALTER TABLE Registro MODIFY (sensor CHECK(sensor='V' OR sensor='P' OR sensor='C'));
-ALTER TABLE Fotos MODIFY (foto CHECK(foto LIKE '%.%'));
+/*ALTER TABLE Atleta MODIFY (tSangre CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB'));*/
+/*ALTER TABLE Actividad MODIFY (tiempoTotal CHECK(tiempoTotal>0 AND tiempoTotal<1441));*/
+/*ALTER TABLE Actividad MODIFY (horaInicio CHECK(horaInicio>0 AND horaInicio<2401));*/
+/*ALTER TABLE Registro MODIFY (hora CHECK(hora>0 AND hora<2401));*/
+/*ALTER TABLE SimilarA MODIFY (porcentaje CHECK(porcentaje>0 AND porcentaje<101));*/
+/*ALTER TABLE Evaluacion MODIFY (puntaje CHECK(puntaje>=0 AND puntaje<6));*/
+/*ALTER TABLE Evaluacion MODIFY (recomendaciones CHECK(recomendaciones LIKE 'Zonas: % Calentamiento: % Cadencia: %'));*/
+/*ALTER TABLE Atleta MODIFY (rh CHECK(rh='+' OR rh='-'));*/
+/*ALTER TABLE Registro MODIFY (sensor CHECK(sensor='V' OR sensor='P' OR sensor='C'));*/
+/*ALTER TABLE Fotos MODIFY (foto CHECK(foto LIKE '%.%'));*/
 
 /*PRIMARIAS*/
 
@@ -235,12 +256,19 @@ ALTER TABLE Registro ADD CONSTRAINT FK_Registro_Actividad FOREIGN KEY (actividad
 ALTER TABLE Evaluacion ADD CONSTRAINT FK_Eval_Actividad FOREIGN KEY (actividad) REFERENCES Actividad(numero);
 ALTER TABLE Fotos ADD CONSTRAINT FK_Fotos_Actividad FOREIGN KEY (actividad) REFERENCES Actividad(numero);
 
-/*Falta:
-Poblar ok
-Poblar no ok(1)
-Poblar no ok(2)
-Construccion protegida atributos,pk,fk
-Consultas opertativas
+/*POBLAR NO OK: CONTRUCCION PROTEGIENDO*/
+
+INSERT INTO Atleta VALUES ('102','2137321','+','x'); /*CK_rh*/
+INSERT INTO Actividad VALUES (NULL,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5); /*PK_Actividad*/
+INSERT INTO Fotos VALUES(1,'3g4ikd/sad'); /*CK_foto*/
+INSERT INTO SimilarA VALUES(1,3,120);/*CK_porcentaje*/
+
+INSERT INTO Participante VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
+INSERT INTO Participante VALUES ('005','0005', 'valentina@hotmail.com', 'Colombia', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
+
+/*CONSULTAS OPERATIVAS*/
+
+/*
 Poblar mockaroo
 */
 
