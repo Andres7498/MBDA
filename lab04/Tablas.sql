@@ -2,7 +2,7 @@
 
 /*CONSTRUCCION DE LAS TABLAS*/
 
-CREATE TABLE  Participante(
+CREATE TABLE  Participantes(
     tid VARCHAR(3) NOT NULL,
     nid VARCHAR(15) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE  Participante(
     fRegistro DATE NOT NULL,
     fRetiro DATE 
 );
-CREATE TABLE Contacto(
+CREATE TABLE Contactos(
     tidContacto VARCHAR(3) NOT NULL,
     nidContacto VARCHAR(15) NOT NULL,
     tidAtleta VARCHAR(3) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Contacto(
     apellido VARCHAR(20) NOT NULL,
     parentezco VARCHAR(30) NOT NULL
 );
-CREATE TABLE Atleta(
+CREATE TABLE Atletas(
     tid VARCHAR(3) NOT NULL,
     nid VARCHAR(15) NOT NULL,
     rh CHAR(1) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE EntrenadoPor(
     tidAtleta VARCHAR(3) NOT NULL,
     nidAtleta VARCHAR(15) NOT NULL
 );
-CREATE TABLE Entrenador(
+CREATE TABLE Entrenadores(
     tid VARCHAR(3) NOT NULL,
     nid VARCHAR(15) NOT NULL,
     seguro VARCHAR(40) NOT NULL
@@ -41,7 +41,7 @@ CREATE TABLE SimilarA(
     evaluacion2 INT NOT NULL,
     porcentaje INT NOT NULL
 );
-CREATE TABLE Sesion(
+CREATE TABLE Sesiones(
     idSesion INT NOT NULL,
     dia INT NOT NULL,
     orden INT NOT NULL,
@@ -50,23 +50,23 @@ CREATE TABLE Sesion(
     tidAtleta VARCHAR(3) NOT NULL,
     nidAtleta VARCHAR(15) NOT NULL
 );
-CREATE TABLE Libre(
+CREATE TABLE Libres(
     numero INT NOT NULL,
     tidAtleta VARCHAR(3) NOT NULL,
     nidAtleta VARCHAR(15) NOT NULL
 );
-CREATE TABLE Planeada(
+CREATE TABLE Planeadas(
     numero INT NOT NULL,
     sesion INT NOT NULL 
 );
-CREATE TABLE Actividad(
+CREATE TABLE Actividades(
     numero INT NOT NULL,
     fechaInicio DATE NOT NULL,
     horaInicio INT NOT NULL,
     tiempoTotal INT NOT NULL,
     pulsacionesProm REAL
 );
-CREATE TABLE Registro(
+CREATE TABLE Registros(
     numero INT NOT NULL,
     actividad INT NOT NULL,
     fecha DATE NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE Registro(
     sensor CHAR(1) NOT NULL,
     valor INT NOT NULL
 );
-CREATE TABLE Evaluacion(
+CREATE TABLE Evaluaciones(
     numero INT NOT NULL,
     fecha DATE NOT NULL,
     puntaje INT NOT NULL,
@@ -91,70 +91,70 @@ CREATE TABLE Fotos(
 
 /*BORRAR LAS TABLAS*/
 
-DROP TABLE Participante CASCADE CONSTRAINTS;
-DROP TABLE Contacto CASCADE CONSTRAINTS;
-DROP TABLE Atleta CASCADE CONSTRAINTS;
+DROP TABLE Participantes CASCADE CONSTRAINTS;
+DROP TABLE Contactos CASCADE CONSTRAINTS;
+DROP TABLE Atletas CASCADE CONSTRAINTS;
 DROP TABLE EntrenadoPor CASCADE CONSTRAINTS;
-DROP TABLE Entrenador CASCADE CONSTRAINTS;
+DROP TABLE Entrenadores CASCADE CONSTRAINTS;
 DROP TABLE SimilarA CASCADE CONSTRAINTS;
-DROP TABLE Sesion CASCADE CONSTRAINTS;
-DROP TABLE Libre CASCADE CONSTRAINTS;
-DROP TABLE Planeada CASCADE CONSTRAINTS;
-DROP TABLE Actividad CASCADE CONSTRAINTS;
-DROP TABLE Registro CASCADE CONSTRAINTS;
-DROP TABLE Evaluacion CASCADE CONSTRAINTS;
+DROP TABLE Sesiones CASCADE CONSTRAINTS;
+DROP TABLE Libres CASCADE CONSTRAINTS;
+DROP TABLE Planeadas CASCADE CONSTRAINTS;
+DROP TABLE Actividades CASCADE CONSTRAINTS;
+DROP TABLE Registros CASCADE CONSTRAINTS;
+DROP TABLE Evaluaciones CASCADE CONSTRAINTS;
 DROP TABLE Fotos CASCADE CONSTRAINTS;
 
 /*POBLAR OK1*/
 
-INSERT INTO Participante VALUES ('001','0001', 'maria.ramirez@mail.escuelaing.edu.co', 'Venezuela', TO_DATE('2019/03/25','yyyy/mm/dd'),TO_DATE('2019/07/25','yyyy/mm/dd'));
-INSERT INTO Participante VALUES ('002','0002', 'juan.rodriguez@mail.escuelaing.edu.co', 'Colombia', TO_DATE('2020/02/9','yyyy/mm/dd'), NULL);
-INSERT INTO Participante VALUES ('003','0003', 'andres.martinez@mail.escuelaing.edu.co', 'Uruguay', TO_DATE('2020/01/15','yyyy/mm/dd'),TO_DATE('2020/01/29','yyyy/mm/dd'));
-INSERT INTO Participante VALUES ('004','0004', 'federico.barrios@gmail.com', 'Colombia', TO_DATE('2018/02/22','yyyy/mm/dd'),NULL);
-INSERT INTO Participante VALUES ('005','0005', 'valentina@hotmail.com', 'Colombia', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);
+INSERT INTO Participantes VALUES ('001','0001', 'maria.ramirez@mail.escuelaing.edu.co', 'Venezuela', TO_DATE('2019/03/25','yyyy/mm/dd'),TO_DATE('2019/07/25','yyyy/mm/dd'));
+INSERT INTO Participantes VALUES ('002','0002', 'juan.rodriguez@mail.escuelaing.edu.co', 'Colombia', TO_DATE('2020/02/9','yyyy/mm/dd'), NULL);
+INSERT INTO Participantes VALUES ('003','0003', 'andres.martinez@mail.escuelaing.edu.co', 'Uruguay', TO_DATE('2020/01/15','yyyy/mm/dd'),TO_DATE('2020/01/29','yyyy/mm/dd'));
+INSERT INTO Participantes VALUES ('004','0004', 'federico.barrios@gmail.com', 'Colombia', TO_DATE('2018/02/22','yyyy/mm/dd'),NULL);
+INSERT INTO Participantes VALUES ('005','0005', 'valentina@hotmail.com', 'Colombia', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);
 
-INSERT INTO contacto VALUES ('001','0001','004','0004','Maria','Ramirez','Amiga'); 
-INSERT INTO contacto VALUES ('002','0002','003','0003','Juan','Rodriguez','Tio');
-INSERT INTO contacto VALUES ('002','0002','001','0001','Juan','Rodriguez','Hermano');
+INSERT INTO contactos VALUES ('001','0001','004','0004','Maria','Ramirez','Amiga'); 
+INSERT INTO contactos VALUES ('002','0002','003','0003','Juan','Rodriguez','Tio');
+INSERT INTO contactos VALUES ('002','0002','001','0001','Juan','Rodriguez','Hermano');
 
-INSERT INTO Atleta VALUES ('004','0004','-','O');
-INSERT INTO Atleta VALUES ('003','0003','-','O');
-INSERT INTO Atleta VALUES ('005','0005','+','AB');
+INSERT INTO Atletas VALUES ('004','0004','-','O');
+INSERT INTO Atletas VALUES ('003','0003','-','O');
+INSERT INTO Atletas VALUES ('005','0005','+','AB');
 
 INSERT INTO EntrenadoPor VALUES ('002','0002','001','0001');
 INSERT INTO EntrenadoPor VALUES ('005','0005','003','0003');
 INSERT INTO EntrenadoPor VALUES ('003','0003','004','0004');
 
-INSERT INTO Entrenador VALUES ('002','0002','Suramericana');
-INSERT INTO Entrenador VALUES ('005','0005','Porvenir');
-INSERT INTO Entrenador VALUES ('003','0003','Porvenir');
+INSERT INTO Entrenadores VALUES ('002','0002','Suramericana');
+INSERT INTO Entrenadores VALUES ('005','0005','Porvenir');
+INSERT INTO Entrenadores VALUES ('003','0003','Porvenir');
 
-INSERT INTO Sesion VALUES (2414,2,50,70,'Cardio','004','0004');
-INSERT INTO Sesion VALUES (1765,3,30,90,'Practica de futbol','003','0003');
-INSERT INTO Sesion VALUES (7893,4,23,60,'Estiramiento','005','0005');
+INSERT INTO Sesiones VALUES (2414,2,50,70,'Cardio','004','0004');
+INSERT INTO Sesiones VALUES (1765,3,30,90,'Practica de futbol','003','0003');
+INSERT INTO Sesiones VALUES (7893,4,23,60,'Estiramiento','005','0005');
 
-INSERT INTO Libre VALUES (1,'004','0004');
-INSERT INTO Libre VALUES (2,'003','0003');
-INSERT INTO Libre VALUES (3,'005','0005');
+INSERT INTO Libres VALUES (1,'004','0004');
+INSERT INTO Libres VALUES (2,'003','0003');
+INSERT INTO Libres VALUES (3,'005','0005');
 
-INSERT INTO Planeada VALUES (4,2414);
-INSERT INTO Planeada VALUES (5,1765);
-INSERT INTO Planeada VALUES (6,7893);
+INSERT INTO Planeadas VALUES (4,2414);
+INSERT INTO Planeadas VALUES (5,1765);
+INSERT INTO Planeadas VALUES (6,7893);
 
-INSERT INTO Actividad VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,2,80.5);
-INSERT INTO Actividad VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,3,82.1);
-INSERT INTO Actividad VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),900,4,86.3);
-INSERT INTO Actividad VALUES (4,TO_DATE('2020/03/3','yyyy/mm/dd'),1400,2,90.5);
-INSERT INTO Actividad VALUES (5,TO_DATE('2020/03/2','yyyy/mm/dd'),2130,3,91.3);
-INSERT INTO Actividad VALUES (6,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5);
+INSERT INTO Actividades VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,2,80.5);
+INSERT INTO Actividades VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,3,82.1);
+INSERT INTO Actividades VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),900,4,86.3);
+INSERT INTO Actividades VALUES (4,TO_DATE('2020/03/3','yyyy/mm/dd'),1400,2,90.5);
+INSERT INTO Actividades VALUES (5,TO_DATE('2020/03/2','yyyy/mm/dd'),2130,3,91.3);
+INSERT INTO Actividades VALUES (6,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5);
 
-INSERT INTO Registro VALUES (1,4,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,'C',15);
-INSERT INTO Registro VALUES (2,5,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,'V',45);
-INSERT INTO Registro VALUES (3,6,TO_DATE('2020/03/4','yyyy/mm/dd'),900,'P',48);
+INSERT INTO Registros VALUES (1,4,TO_DATE('2020/03/6','yyyy/mm/dd'),1400,'C',15);
+INSERT INTO Registros VALUES (2,5,TO_DATE('2020/03/5','yyyy/mm/dd'),1630,'V',45);
+INSERT INTO Registros VALUES (3,6,TO_DATE('2020/03/4','yyyy/mm/dd'),900,'P',48);
 
-INSERT INTO Evaluacion VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),2,'Debe practicar más','Zonas: 1 Calentamiento: 3 Cadencia: 2',1,'002','0002');
-INSERT INTO Evaluacion VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),3,'Buen gancho','Zonas: 1 Calentamiento: 2 Cadencia: 3',2,'005','0005');
-INSERT INTO Evaluacion VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),5,'Tiene aptitudes para esta disciplina','Zonas: 6 Calentamiento: 5 Cadencia: 4',3,'003','0003');
+INSERT INTO Evaluaciones VALUES (1,TO_DATE('2020/03/6','yyyy/mm/dd'),2,'Debe practicar más','Zonas: 1 Calentamiento: 3 Cadencia: 2',1,'002','0002');
+INSERT INTO Evaluaciones VALUES (2,TO_DATE('2020/03/5','yyyy/mm/dd'),3,'Buen gancho','Zonas: 1 Calentamiento: 2 Cadencia: 3',2,'005','0005');
+INSERT INTO Evaluaciones VALUES (3,TO_DATE('2020/03/4','yyyy/mm/dd'),5,'Tiene aptitudes para esta disciplina','Zonas: 6 Calentamiento: 5 Cadencia: 4',3,'003','0003');
 
 INSERT INTO SimilarA VALUES(1,2,58);
 INSERT INTO SimilarA VALUES(3,4,97);
@@ -166,45 +166,45 @@ INSERT INTO Fotos VALUES(1,'3g4ikd.sad');
 
 /*POBLAR NO OK 1*/
 
-INSERT INTO Evaluacion VALUES (4,'2020/02/17',86,'Debe practicar más','Dediquese a otra cosa','002','0002'); /*Se ingreso un varchar en lugar de un tipo DATE*/
-INSERT INTO Entrenador VALUES ('006','0006','Porvenir',45648);/*Demasiados valores*/
-INSERT INTO Participante VALUES (NULL,NULL,'federico@gmail.com','Colombia',TO_DATE('2016/06/29','yyyy/mm/dd'),NULL); /*tid y nid no puedes ser nulos*/
-INSERT INTO Atleta VALUES ('0025','0005','+','AB'); /*El valor del tid es mas grande de lo permitido*/
-INSERT INTO Planeada VALUES ('ca21',0005); /*El número de la sesion planeada no es del tipo requerido, ingresa char necesita int*/
+INSERT INTO Evaluaciones VALUES (4,'2020/02/17',86,'Debe practicar más','Dediquese a otra cosa','002','0002'); /*Se ingreso un varchar en lugar de un tipo DATE*/
+INSERT INTO Entrenadores VALUES ('006','0006','Porvenir',45648);/*Demasiados valores*/
+INSERT INTO Participantes VALUES (NULL,NULL,'federico@gmail.com','Colombia',TO_DATE('2016/06/29','yyyy/mm/dd'),NULL); /*tid y nid no puedes ser nulos*/
+INSERT INTO Atletas VALUES ('0025','0005','+','AB'); /*El valor del tid es mas grande de lo permitido*/
+INSERT INTO Planeadas VALUES ('ca21',0005); /*El número de la sesion planeada no es del tipo requerido, ingresa char necesita int*/
 
 /*POBLAR NO OK 2*/
-INSERT INTO Participante VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*el id de anderson es el mismo de valentina*/
+INSERT INTO Participantes VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*el id de anderson es el mismo de valentina*/
 INSERT INTO SimilarA VALUES(1,7,20);/*El id ingresado no se encuentra*/
-INSERT INTO Actividad VALUES (7,TO_DATE('2020/02/1','yyyy/mm/dd'),1100,4,74.5,'f6ew4dfsa');/*El codigo de la foto no cumple con el tipo requerido*/
-INSERT INTO Atleta VALUES ('102','2137321','+','x'); /*El tipo de sangre no es valido*/
+INSERT INTO Actividades VALUES (7,TO_DATE('2020/02/1','yyyy/mm/dd'),1100,4,74.5,'f6ew4dfsa');/*El codigo de la foto no cumple con el tipo requerido*/
+INSERT INTO Atletas VALUES ('102','2137321','+','x'); /*El tipo de sangre no es valido*/
 INSERT INTO SimilarA VALUES(1,3,120);/*El porcentaje es mayor a 100*/
 
 /*DESPOBLAR*/
 
-DELETE FROM Participante;
-DELETE FROM Contacto;
-DELETE FROM Atleta;
+DELETE FROM Participantes;
+DELETE FROM Contactos;
+DELETE FROM Atletas;
 DELETE FROM EntrenadoPor;
-DELETE FROM Entrenador;
+DELETE FROM Entrenadores;
 DELETE FROM SimilarA;
-DELETE FROM Sesion;
-DELETE FROM Libre;
-DELETE FROM Planeada;
-DELETE FROM Actividad;
-DELETE FROM Registro;
-DELETE FROM Evaluacion;
+DELETE FROM Sesiones;
+DELETE FROM Libres;
+DELETE FROM Planeadas;
+DELETE FROM Actividades;
+DELETE FROM Registros;
+DELETE FROM Evaluaciones;
 DELETE FROM Fotos;
 
 /*CHECKS*/
-ALTER TABLE Atleta ADD CONSTRAINT CK_tSangre CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB');
-ALTER TABLE Actividad ADD CONSTRAINT CK_tiempoTotal CHECK(tiempoTotal>0 AND tiempoTotal<1441);
-ALTER TABLE Actividad ADD CONSTRAINT CK_horaInicio CHECK(horaInicio>0 AND horaInicio<2401);
-ALTER TABLE Registro ADD CONSTRAINT CK_hora CHECK(hora>0 AND hora<2401);
+ALTER TABLE Atletas ADD CONSTRAINT CK_TSangres CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB');
+ALTER TABLE Actividades ADD CONSTRAINT CK_tiempoTotal CHECK(tiempoTotal>0 AND tiempoTotal<1441);
+ALTER TABLE Actividades ADD CONSTRAINT CK_horaInicio CHECK(horaInicio>0 AND horaInicio<2401);
+ALTER TABLE Registros ADD CONSTRAINT CK_hora CHECK(hora>0 AND hora<2401);
 ALTER TABLE SimilarA ADD CONSTRAINT CK_porcentaje CHECK(porcentaje>0 AND porcentaje<101);
-ALTER TABLE Evaluacion ADD CONSTRAINT CK_puntaje CHECK(puntaje>=0 AND puntaje<6);
-ALTER TABLE Evaluacion ADD CONSTRAINT CK_recomendaciones CHECK(recomendaciones LIKE 'Zonas: % Calentamiento: % Cadencia: %');
-ALTER TABLE Atleta ADD CONSTRAINT CK_rh CHECK(rh='+' OR rh='-');
-ALTER TABLE Registro ADD CONSTRAINT CK_sensor CHECK(sensor='V' OR sensor='P' OR sensor='C');
+ALTER TABLE Evaluaciones ADD CONSTRAINT CK_puntaje CHECK(puntaje>=0 AND puntaje<6);
+ALTER TABLE Evaluaciones ADD CONSTRAINT CK_recomendaciones CHECK(recomendaciones LIKE 'Zonas: % Calentamiento: % Cadencia: %');
+ALTER TABLE Atletas ADD CONSTRAINT CK_RHs CHECK(rh='+' OR rh='-');
+ALTER TABLE Registros ADD CONSTRAINT CK_sensor CHECK(sensor='V' OR sensor='P' OR sensor='C');
 ALTER TABLE Fotos ADD CONSTRAINT CK_foto CHECK(foto LIKE '%.%');
 
 /*ALTER TABLE Atleta MODIFY (tSangre CHECK(tSangre='A' OR tSangre='B' OR tSangre='O' OR tSangre='AB'));*/
@@ -220,51 +220,51 @@ ALTER TABLE Fotos ADD CONSTRAINT CK_foto CHECK(foto LIKE '%.%');
 
 /*PRIMARIAS*/
 
-ALTER TABLE Participante ADD CONSTRAINT PK_Participante PRIMARY KEY (tid,nid);
-ALTER TABLE Contacto ADD CONSTRAINT PK_Contacto PRIMARY KEY (tidContacto,nidContacto,tidAtleta,nidAtleta);
-ALTER TABLE Atleta ADD CONSTRAINT PK_Atleta PRIMARY KEY (tid,nid);
+ALTER TABLE Participantes ADD CONSTRAINT PK_Participantes PRIMARY KEY (tid,nid);
+ALTER TABLE Contactos ADD CONSTRAINT PK_Contactos PRIMARY KEY (tidContacto,nidContacto,tidAtleta,nidAtleta);
+ALTER TABLE Atletas ADD CONSTRAINT PK_Atletas PRIMARY KEY (tid,nid);
 ALTER TABLE EntrenadoPor ADD CONSTRAINT PK_EntrenadoPor PRIMARY KEY (tidEntrenador,nidEntrenador,tidAtleta,nidAtleta);
-ALTER TABLE Entrenador ADD CONSTRAINT PK_Entrenador PRIMARY KEY (tid,nid);
+ALTER TABLE Entrenadores ADD CONSTRAINT PK_Entrenadores PRIMARY KEY (tid,nid);
 ALTER TABLE SimilarA ADD CONSTRAINT PK_SimilarA PRIMARY KEY (evaluacion1,evaluacion2);
-ALTER TABLE Sesion ADD CONSTRAINT PK_Sesion PRIMARY KEY (idSesion);
-ALTER TABLE Libre ADD CONSTRAINT PK_Libre PRIMARY KEY (numero);
-ALTER TABLE Planeada ADD CONSTRAINT PK_Planeada PRIMARY KEY (numero);
-ALTER TABLE Actividad ADD CONSTRAINT PK_Actividad PRIMARY KEY (numero);
-ALTER TABLE Registro ADD CONSTRAINT PK_Registro PRIMARY KEY (numero);
-ALTER TABLE Evaluacion ADD CONSTRAINT PK_Evaluacion PRIMARY KEY (numero);
+ALTER TABLE Sesiones ADD CONSTRAINT PK_Sesiones PRIMARY KEY (idSesion);
+ALTER TABLE Libres ADD CONSTRAINT PK_Libres PRIMARY KEY (numero);
+ALTER TABLE Planeadas ADD CONSTRAINT PK_Planeadas PRIMARY KEY (numero);
+ALTER TABLE Actividades ADD CONSTRAINT PK_Actividades PRIMARY KEY (numero);
+ALTER TABLE Registros ADD CONSTRAINT PK_Registros PRIMARY KEY (numero);
+ALTER TABLE Evaluaciones ADD CONSTRAINT PK_Evaluaciones PRIMARY KEY (numero);
 ALTER TABLE Fotos ADD CONSTRAINT PK_Fotos PRIMARY KEY (actividad,foto);
 
 /*UNICAS*/
 
-ALTER TABLE Evaluacion ADD CONSTRAINT UK_Evaluacion1 UNIQUE (comentarios);
-ALTER TABLE Evaluacion ADD CONSTRAINT UK_Evaluacion2 UNIQUE (actividad);
+ALTER TABLE Evaluaciones ADD CONSTRAINT UK_Evaluacion1 UNIQUE (comentarios);
+ALTER TABLE Evaluaciones ADD CONSTRAINT UK_Evaluacion2 UNIQUE (actividad);
 
 /*FORANEAS*/
 
-ALTER TABLE Contacto ADD CONSTRAINT FK_Contacto_Participante FOREIGN KEY (tidContacto,nidContacto) REFERENCES Participante(tid,nid);
-ALTER TABLE Contacto ADD CONSTRAINT FK_Contacto_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
-ALTER TABLE Atleta ADD CONSTRAINT FK_Atleta_Participante FOREIGN KEY (tid,nid) REFERENCES Participante(tid,nid);
-ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Entrenador FOREIGN KEY (tidEntrenador,nidEntrenador) REFERENCES Entrenador(tid,nid);
-ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
-ALTER TABLE Entrenador ADD CONSTRAINT FK_Entrenador_Participante FOREIGN KEY (tid,nid) REFERENCES Participante(tid,nid);
-ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion1 FOREIGN KEY (evaluacion1) REFERENCES Evaluacion(numero);
-ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion2 FOREIGN KEY (evaluacion2) REFERENCES Evaluacion(numero);
-ALTER TABLE Sesion ADD CONSTRAINT FK_Sesion_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
-ALTER TABLE Libre ADD CONSTRAINT FK_Libre_Atleta FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atleta(tid,nid);
-ALTER TABLE Planeada ADD CONSTRAINT FK_Planeada_Sesion FOREIGN KEY (sesion) REFERENCES Sesion(idSesion);
-ALTER TABLE Registro ADD CONSTRAINT FK_Registro_Actividad FOREIGN KEY (actividad) REFERENCES Actividad(numero);
-ALTER TABLE Evaluacion ADD CONSTRAINT FK_Eval_Actividad FOREIGN KEY (actividad) REFERENCES Actividad(numero);
-ALTER TABLE Fotos ADD CONSTRAINT FK_Fotos_Actividad FOREIGN KEY (actividad) REFERENCES Actividad(numero);
+ALTER TABLE Contactos ADD CONSTRAINT FK_Contactos_Participantes FOREIGN KEY (tidContacto,nidContacto) REFERENCES Participantes(tid,nid);
+ALTER TABLE Contactos ADD CONSTRAINT FK_Contactos_Atletas FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atletas(tid,nid);
+ALTER TABLE Atletas ADD CONSTRAINT FK_Atletas_Participantes FOREIGN KEY (tid,nid) REFERENCES Participantes(tid,nid);
+ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Entrenadores FOREIGN KEY (tidEntrenador,nidEntrenador) REFERENCES Entrenadores(tid,nid);
+ALTER TABLE EntrenadoPor ADD CONSTRAINT FK_EntrePor_Atletas FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atletas(tid,nid);
+ALTER TABLE Entrenadores ADD CONSTRAINT FK_Entrenadores_Participantes FOREIGN KEY (tid,nid) REFERENCES Participantes(tid,nid);
+ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion1 FOREIGN KEY (evaluacion1) REFERENCES Evaluaciones(numero);
+ALTER TABLE SimilarA ADD CONSTRAINT FK_SimilarA_Evaluacion2 FOREIGN KEY (evaluacion2) REFERENCES Evaluaciones(numero);
+ALTER TABLE Sesiones ADD CONSTRAINT FK_Sesion_Atletas FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atletas(tid,nid);
+ALTER TABLE Libres ADD CONSTRAINT FK_Libres_Atletas FOREIGN KEY (tidAtleta,nidAtleta) REFERENCES Atletas(tid,nid);
+ALTER TABLE Planeadas ADD CONSTRAINT FK_Planeadas_Sesiones FOREIGN KEY (sesion) REFERENCES Sesiones(idSesion);
+ALTER TABLE Registros ADD CONSTRAINT FK_Registros_Actividades FOREIGN KEY (actividad) REFERENCES Actividades(numero);
+ALTER TABLE Evaluaciones ADD CONSTRAINT FK_Eval_Actividades FOREIGN KEY (actividad) REFERENCES Actividades(numero);
+ALTER TABLE Fotos ADD CONSTRAINT FK_Fotos_Actividades FOREIGN KEY (actividad) REFERENCES Actividades(numero);
 
 /*POBLAR NO OK: CONTRUCCION PROTEGIENDO*/
 
-INSERT INTO Atleta VALUES ('102','2137321','+','x'); /*CK_rh*/
-INSERT INTO Actividad VALUES (NULL,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5); /*PK_Actividad*/
+INSERT INTO Atletas VALUES ('102','2137321','+','x'); /*CK_rh*/
+INSERT INTO Actividades VALUES (NULL,TO_DATE('2020/03/1','yyyy/mm/dd'),2400,5,80.5); /*PK_Actividad*/
 INSERT INTO Fotos VALUES(1,'3g4ikd/sad'); /*CK_foto*/
 INSERT INTO SimilarA VALUES(1,3,120);/*CK_porcentaje*/
 
-INSERT INTO Participante VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
-INSERT INTO Participante VALUES ('005','0005', 'valentina@hotmail.com', 'Colombia', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
+INSERT INTO Participantes VALUES ('005','0005', 'anderson@hotmail.com', 'Venezuela', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
+INSERT INTO Participantes VALUES ('005','0005', 'valentina@hotmail.com', 'Colombia', TO_DATE('2016/06/29','yyyy/mm/dd'),NULL);/*PK_Participante*/
 
 /*CONSULTAS OPERATIVAS*/
 
@@ -277,12 +277,19 @@ Poblar mockaroo
 
 /*Registrar evaluación*/
 
-/*CREATE TRIGGER T1 
-BEFORE INSERT ON Evaluacion
+CREATE OR REPLACE TRIGGER T1 
+BEFORE INSERT ON Evaluaciones
+FOR EACH ROW
 BEGIN
-    SET new.fecha =: NOW();
-END T1;*/
+    :new.fecha := SYSDATE();
+END T1;
 
+/*CREATE OR REPLACE TRIGGER T2 
+BEFORE INSERT ON Evaluaciones
+FOR EACH ROW
+BEGIN
+    :new.numero := new.numero+1;
+END T2;/*
 /*
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('962', '892366242323883', '962@escuelaing.edu.co', 'Indonesia', '2018-06-26', '2019-06-01');
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('773', '129322706960453', '773@escuelaing.edu.co', 'Honduras', '2019-02-24', '2019-07-28');
