@@ -89,7 +89,7 @@ CREATE TABLE Fotos(
     foto VARCHAR(150) NOT NULL
 );
 
-/*BORRAR LAS TABLES*/
+/*BORRAR LAS TABLAS*/
 
 DROP TABLE Participante CASCADE CONSTRAINTS;
 DROP TABLE Contacto CASCADE CONSTRAINTS;
@@ -274,9 +274,15 @@ Poblar mockaroo
 
 
 /*LAB04*/
-INSERT INTO Participante VALUES ('962', '892366242323883', '962@escuelaing.edu.co', 'Indonesia', TO_DATE('2018/06/26','yyyy/mm/dd'), TO_DATE('2019/06/01','yyyy/mm/dd'));
-INSERT INTO Participante VALUES ('003','0003', 'andres.martinez@mail.escuelaing.edu.co', 'Uruguay', TO_DATE('2020/01/15','yyyy/mm/dd'),TO_DATE('2020/01/29','yyyy/mm/dd'));
-insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('130', '456284223145547', '130@escuelaing.edu.co', 'Poland', TO_DATE('2018-01-28','yyyy-mm-dd'), TO_DATE('2019-10-04','yyyy-mm-dd'));
+
+/*Registrar evaluación*/
+
+/*CREATE TRIGGER T1 
+BEFORE INSERT ON Evaluacion
+BEGIN
+    SET new.fecha =: NOW();
+END T1;*/
+
 /*
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('962', '892366242323883', '962@escuelaing.edu.co', 'Indonesia', '2018-06-26', '2019-06-01');
 insert into Participante (tid, nid, email, pais, fRegistro, fRetiro) values ('773', '129322706960453', '773@escuelaing.edu.co', 'Honduras', '2019-02-24', '2019-07-28');
