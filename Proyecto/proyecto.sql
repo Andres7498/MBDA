@@ -154,8 +154,18 @@ ADD CONSTRAINT CK_medioDePago
 CHECK(medioDePago='Efectivo' OR medioDePago='Trajeta debito' OR medioDePago='Tarjeta Cine'
     OR medioDePago='Tarjeta credito' OR medioDePago='Consignacion bancaria');
     
+ALTER TABLE AreasDeAnalisisDeUsuarios
+ADD CONSTRAINT CK_diaQueMasViene
+CHECK (diaQueMasViene='Lunes' OR diaQueMasViene='Martes' OR diaQueMasViene='Miercoles' OR diaQueMasViene='Jueves' OR
+    diaQueMasViene='Viernes' OR diaQueMasViene='Sabado' OR diaQueMasViene='Domingo');
+
+ALTER TABLE EncuestasDeSatisfaccion
+ADD CONSTRAINT CK_email
+    CHECK(email LIKE '%@%.com');
     
-    
+ALTER TABLE Pelicula
+ADD CONSTRAINT CK_duracion
+    CHECK (duracion LIKE 'INT:INT');
 /*PRIMARIAS*/
 
 ALTER TABLE ISABs ADD CONSTRAINT PK_ISABs PRIMARY KEY (idEMpleado);
@@ -181,3 +191,9 @@ ALTER TABLE Teatros ADD CONSTRAINT UK_Teatros UNIQUE (idUsuario);
 ALTER TABLE Taquillas ADD CONSTRAINT UK_Taquila UNIQUE (idPago);
 ALTER TABLE PagosDeBoletas ADD CONSTRAINT UK_PagosDeBoletas UNIQUE (idBoletas);
 ALTER TABLE Boletas ADD CONSTRAINT UK_Boletas UNIQUE (idUbicacion);
+
+/*FORANEAS*/
+
+
+
+/*CHECKS*/
