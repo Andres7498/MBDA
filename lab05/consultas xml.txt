@@ -1,0 +1,43 @@
+PUNTO B consultas iniciales
+1.
+a. /countries/country/@name
+b. 
+c.
+d.
+e. count(/countries/country)
+2.
+a. count(/countries/*[city|language])
+b. /countries/*[city|language]/@name
+3. 
+/countries/*[city and language ]/(@name | city/name/text() | language/text())
+4. 
+/countries/country[not(city)][not(language)]
+5.
+a. /countries/country[@name="Colombia"]
+b. /countries/country[@name="Colombia"]/@*
+c. /countries/country[@name="Colombia"]/*
+6.
+/countries/country[@name="Colombia"]/@population
+7.
+/countries/country[@name="Colombia"]/city/name/text()
+8.
+/countries/country[count(city)=1]/@name
+9.
+/countries/country[@population<500000000]/@name
+10.
+/countries/country[count(language)=1][data(language)="Spanish"]
+11.
+/countries/country[count(language)=1]/(@name | language)
+12.
+/countries/country[(language/@percentage)<50]
+13.
+14.
+
+Consultas de Standford
+a. /countries/country[@name="Mongolia"]/@area
+b. /countries/country[data(city/name)=@name]/data(@name)
+c. /countries/country[language[@percentage>50 and data()="German"]]/@name
+d.
+e. /countries/country[count(city)>=3 and @population>3000000]/@name
+f. /countries/country[language[data()="German" or data()="French"]]/@name
+g. 
