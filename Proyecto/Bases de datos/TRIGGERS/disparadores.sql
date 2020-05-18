@@ -1,0 +1,19 @@
+/*No se puede eliminar una ubicacion de una sala*/
+CREATE OR REPLACE TRIGGER ELIMINAR_UBICACION
+BEFORE DELETE ON UBICACIONES
+FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR (-20093,'NO SE PUEDE ELIMINAR NINGUNA UBICACION.');
+END;
+
+/*La fecha de diligenciamiento de la encuesta debe ser menor a la actual*/
+CREATE OR REPLACE TRIGGER FECHA_ENCUESTAS
+BEFORE INSERT ON ENCUESTASDESATISFACCION
+FOR EACH ROW
+DECLARE FECHA DATE;
+BEGIN
+  SELECT SYSDATE INTO FECHA FROM DUAL;
+  IF :NEW.fechaDiligenciamiento > FECHA_ THEN
+    RAISE_APPLICATION_ERROR(-20003,'No se puede ingresar un usuario con una fecha mayor a la actual');
+  END IF;
+END;

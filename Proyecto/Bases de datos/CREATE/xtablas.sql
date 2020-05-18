@@ -1,0 +1,17 @@
+DROP TABLE ISAB;
+DROP TABLE CadenasDeCines;
+DROP TABLE Teatros;
+DROP TABLE ClientesEnTeatros;
+DROP TABLE Clientes;
+DROP TABLE AreasDeAnalisisDeUsuarios;
+DROP TABLE Publicidades;
+DROP TABLE Pagos;
+DROP TABLE Taquillas;
+DROP TABLE TaquillasClientes;
+DROP TABLE Boletas;
+DROP TABLE Ubicaciones;
+DROP TABLE Salas;
+DROP TABLE Funciones;
+DROP TABLE Peliculas;
+DROP TABLE Generos;
+DROP TABLE EncuestasDeSatisfaccion;

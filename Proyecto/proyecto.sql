@@ -76,14 +76,14 @@ CREATE TABLE TaquillasClientes(
 CREATE TABLE Boletas(
     idBoletas VARCHAR(5) NOT NULL,
     pelicula VARCHAR(20) NOT NULL,
-    hora DATETIME NOT NULL,
+    hora DATE NOT NULL,
     idUbicacion VARCHAR(5) NOT NULL,
     idFuncion VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE Ubicaciones(
     idUbicacion VARCHAR(5) NOT NULL,
-    fila VARCHAR(1) NOT NULL,
+    fila CHAR(1) NOT NULL,
     numeroDeSilla INT NOT NULL,
     disponible BOOLEAN NOT NULL,
     idSala VARCHAR(5) NOT NULL
@@ -99,8 +99,8 @@ CREATE TABLE Salas(
 
 CREATE TABLE Funciones(
     idFuncion VARCHAR(5) NOT NULL,
-    horaInicio DATETIME NOT NULL,
-    horaFin DATETIME NOT NULL,
+    horaInicio DATE NOT NULL,
+    horaFin DATE NOT NULL,
     idUsuario VARCHAR(5) NOT NULL,
     idPelicula VARCHAR(5) NOT NULL
 );
@@ -252,3 +252,8 @@ ALTER TABLE Boletas ADD CONSTRAINT FK_Boletas_Pagos FOREIGN KEY (idPago) REFEREN
 ALTER TABLE Boletas ADD CONSTRAINT FK_Boletas_Ubicaciones FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(idUbicacion);
 ALTER TABLE Boletas ADD CONSTRAINT FK_Boletas_Funciones FOREIGN KEY (idFuncion) REFERENCES Funciones(idFuncion);
 
+/*VISTAS*/
+CREATE VIEW V_Boleta AS
+	SELECT * FROM Boletas JOIN Ubicaciones ON (Boletas.idUbicacion=Ubicaciones.idUbicacion);
+    
+    
