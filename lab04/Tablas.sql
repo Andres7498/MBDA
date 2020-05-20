@@ -108,6 +108,116 @@ DROP TABLE Fotos CASCADE CONSTRAINTS;
 /*POBLAR OK1*/
 
 INSERT INTO Participantes VALUES ('001','0001', 'maria.ramirez@mail.escuelaing.edu.co', 'Venezuela', TO_DATE('2019/03/25','yyyy/mm/dd'),TO_DATE('2019/07/25','yyyy/mm/dd'));
+/*LAB03*/
+
+/*CONSTRUCCION DE LAS TABLAS*/
+
+CREATE TABLE  Participantes(
+    tid VARCHAR(3) NOT NULL,
+    nid VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    pais VARCHAR(30) NOT NULL,
+    fRegistro DATE NOT NULL,
+    fRetiro DATE 
+);
+CREATE TABLE Contactos(
+    tidContacto VARCHAR(3) NOT NULL,
+    nidContacto VARCHAR(15) NOT NULL,
+    tidAtleta VARCHAR(3) NOT NULL,
+    nidAtleta VARCHAR(15) NOT NULL,
+    nombre VARCHAR(20)NOT NULL,
+    apellido VARCHAR(20) NOT NULL,
+    parentezco VARCHAR(30) NOT NULL
+);
+CREATE TABLE Atletas(
+    tid VARCHAR(3) NOT NULL,
+    nid VARCHAR(15) NOT NULL,
+    rh CHAR(1) NOT NULL,
+    tSangre CHAR(2) NOT NULL
+);
+CREATE TABLE EntrenadoPor(
+    tidEntrenador VARCHAR(3) NOT NULL,
+    nidEntrenador VARCHAR(15) NOT NULL,
+    tidAtleta VARCHAR(3) NOT NULL,
+    nidAtleta VARCHAR(15) NOT NULL
+);
+CREATE TABLE Entrenadores(
+    tid VARCHAR(3) NOT NULL,
+    nid VARCHAR(15) NOT NULL,
+    seguro VARCHAR(40) NOT NULL
+);
+CREATE TABLE SimilarA(
+    evaluacion1 INT NOT NULL,
+    evaluacion2 INT NOT NULL,
+    porcentaje INT NOT NULL
+);
+CREATE TABLE Sesiones(
+    idSesion INT NOT NULL,
+    dia INT NOT NULL,
+    orden INT NOT NULL,
+    duracion INT NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    tidAtleta VARCHAR(3) NOT NULL,
+    nidAtleta VARCHAR(15) NOT NULL
+);
+CREATE TABLE Libres(
+    numero INT NOT NULL,
+    tidAtleta VARCHAR(3) NOT NULL,
+    nidAtleta VARCHAR(15) NOT NULL
+);
+CREATE TABLE Planeadas(
+    numero INT NOT NULL,
+    sesion INT NOT NULL 
+);
+CREATE TABLE Actividades(
+    numero INT NOT NULL,
+    fechaInicio DATE NOT NULL,
+    horaInicio INT NOT NULL,
+    tiempoTotal INT NOT NULL,
+    pulsacionesProm REAL
+);
+CREATE TABLE Registros(
+    numero INT NOT NULL,
+    actividad INT NOT NULL,
+    fecha DATE NOT NULL,
+    hora INT NOT NULL,
+    sensor CHAR(1) NOT NULL,
+    valor INT NOT NULL
+);
+CREATE TABLE Evaluaciones(
+    numero INT NOT NULL,
+    fecha DATE NOT NULL,
+    puntaje INT NOT NULL,
+    comentarios VARCHAR(500),
+    recomendaciones VARCHAR(500),
+    actividad INT NOT NULL,
+    tid VARCHAR(3) NOT NULL,
+    nid VARCHAR(15) NOT NULL
+);
+CREATE TABLE Fotos(
+    actividad INT NOT NULL,
+    foto VARCHAR(150) NOT NULL
+);
+
+/*BORRAR LAS TABLAS*/
+
+DROP TABLE Participantes CASCADE CONSTRAINTS;
+DROP TABLE Contactos CASCADE CONSTRAINTS;
+DROP TABLE Atletas CASCADE CONSTRAINTS;
+DROP TABLE EntrenadoPor CASCADE CONSTRAINTS;
+DROP TABLE Entrenadores CASCADE CONSTRAINTS;
+DROP TABLE SimilarA CASCADE CONSTRAINTS;
+DROP TABLE Sesiones CASCADE CONSTRAINTS;
+DROP TABLE Libres CASCADE CONSTRAINTS;
+DROP TABLE Planeadas CASCADE CONSTRAINTS;
+DROP TABLE Actividades CASCADE CONSTRAINTS;
+DROP TABLE Registros CASCADE CONSTRAINTS;
+DROP TABLE Evaluaciones CASCADE CONSTRAINTS;
+DROP TABLE Fotos CASCADE CONSTRAINTS;
+
+/*POBLAR OK1*/
+
+INSERT INTO Participantes VALUES ('001','0001', 'maria.ramirez@mail.escuelaing.edu.co', 'Venezuela', TO_DATE('2019/03/25','yyyy/mm/dd'),TO_DATE('2019/07/25','yyyy/mm/dd'));
 INSERT INTO Participantes VALUES ('002','0002', 'juan.rodriguez@mail.escuelaing.edu.co', 'Colombia', TO_DATE('2020/02/9','yyyy/mm/dd'), NULL);
 INSERT INTO Participantes VALUES ('003','0003', 'andres.martinez@mail.escuelaing.edu.co', 'Uruguay', TO_DATE('2020/01/15','yyyy/mm/dd'),TO_DATE('2020/01/29','yyyy/mm/dd'));
 INSERT INTO Participantes VALUES ('004','0004', 'federico.barrios@gmail.com', 'Colombia', TO_DATE('2018/02/22','yyyy/mm/dd'),NULL);
@@ -271,7 +381,6 @@ INSERT INTO Participantes VALUES ('005','0005', 'valentina@hotmail.com', 'Colomb
 /*
 Poblar mockaroo
 */
-
 
 /*LAB04*/
 

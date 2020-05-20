@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE BODY PC_PELICULA IS
 			INSERT INTO Funciones(idFuncion,horaInicio,horaFin,idUsuario,idPelicula) VALUES (xidFuncion,xhoraInicio,xhoraFin,xidUsuario,xidPelicula);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la funcion.');
 		END;
@@ -35,7 +35,7 @@ CREATE OR REPLACE PACKAGE BODY PC_PELICULA IS
 			INSERT INTO Peliculas(idPelicula,nombre,director,fechaEstreno,duracion,tipoPublico,idGenero) VALUES (xidPelicula,xnombre,xdirector,xfechaEstreno,xduracion,xtipoPublico,xidGenero);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la pelicula.');
 		END;
@@ -45,7 +45,7 @@ CREATE OR REPLACE PACKAGE BODY PC_PELICULA IS
 			INSERT INTO Generos(idGenero,clasificacion,nombre) VALUES (xidGenero,xclasificacion,xnombre);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar el genero.');
 		END;
@@ -64,7 +64,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO CadenasDeCines(nit,nombre,razonSocial,fechaDeCreacion,idEmpleado,idUsuario) VALUES (xnit,xnombre,xrazonSocial,xfechaDeCreacion,xidEmpleado,xidUsuario);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la cadena de cines.');
 		END;
@@ -74,7 +74,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO Teatros(idTeatro,ciudad,numeroDeSalas,nit,idUsuario) VALUES (xidTeatro,xciudad,xnumeroDeSalas,xnit,xidUsuario);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar el teatro.');
 		END;
@@ -84,7 +84,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO Salas(idSala,capacidad,disponibilidad,idTeatro,idFuncion) VALUES (xidSala,xcapacidad,xdisponibilidad,xidTeatro,xidFuncion);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la sala.');
 		END;
@@ -96,7 +96,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO Taquillas(idTaquilla,numeroDeCaja,idTeatro) VALUES (xidTaquilla,xnumeroDeCaja,xidTeatro);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la taquilla.');
 		END;
@@ -106,7 +106,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO TaquillasClientes(idTaquilla,idCliente) VALUES (xidTaquilla,xidCliente);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar la taquilla y el cliente.');
 		END;
@@ -116,7 +116,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO Pagos(idPago,medioDePago,fechaDeCompra,precio,idCliente,idTaquilla) VALUES (xidPago,xmedioDePago,xfechaDeCompra,xprecio,xidCliente,xidTaquilla);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede registrar el pago.');
 		END;
@@ -126,7 +126,7 @@ CREATE OR REPLACE PACKAGE BODY PC_CINE IS
 			INSERT INTO Boletas(idBoletas,pelicula,fecha,idUbicacion,idFuncion) VALUES (xidBoletas,xpelicula,xfecha,xidUbicacion,xidFuncion);
 			COMMIT;
 			EXCEPTION
-				WHEN OTHER THEN 
+				WHEN OTHERS THEN 
 				ROLLBACK;
 				RAISE_APPLICATION_ERROR(-20001, 'No se puede registrar el pago de boleta.');
 		END;
